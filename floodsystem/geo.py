@@ -52,6 +52,25 @@ def stations_by_distance(stations,p):
     #sort the array produced
     sorted_distances = sorted_by_key(distances,1)
     return sorted_distances
+
+def stations_within_radius(stations, centre, r):
+    """Inputs - stations: list of stations with data type MonitoringStation
+    centre: tuple of coordinates from which the radius is measured
+    r: desired radius
+    
+    Output - list of all stations (data type MonitoringStation) within radius r
+    of centre"""
+    
+    #find the distances of each station from centre
+    distances = stations_by_distance(stations, centre)
+    
+    #test distance with radius and put into new list
+    within_radius=[]
+    for i in distances:
+        if i[1] <= r:
+            within_radius.append(i)
+            
+    return within_radius
     
     
     
