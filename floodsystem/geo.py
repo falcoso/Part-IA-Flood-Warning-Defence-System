@@ -105,6 +105,39 @@ def stations_by_river(stations):
             stations_by_river_dict[station.river]=[station.name]
             
     return(stations_by_river_dict)
+
+def rivers_by_station_number(stations, N):
+    """ Inputs- stations:list of stations with data type MonitoringStation and 
+                N: the number of rivers required with data type int
+    Output - returns a list of tuples with the river type and number of stations"""
+    
+    stations_by_river_dict=stations_by_river(stations)
+    
+    #create list
+    rivers_by_station_numbers=[]
+    
+    #generate the list of tuples
+    for river in stations_by_river_dict:
+        
+        rivers_by_station_numbers.append((river,len(stations_by_river_dict[river])))
+    
+    #sort list by number
+    rivers_by_station_numbers=sorted(rivers_by_station_numbers,key=lambda x:x[1],reverse=True)
+    
+    #create list of length N
+    rivers_by_station_numbers_output=rivers_by_station_numbers[0:N]
+    
+    #create local variable to check
+    N_check=N
+    
+    #adding stations with duplicate entries
+    while(rivers_by_station_numbers[N_check][1]==rivers_by_station_numbers[N_check-1][1]):
+        rivers_by_station_numbers_output.append(rivers_by_station_numbers[N_check])
+        N_check=N_check+1
+
+    
+    return(rivers_by_station_numbers_output)
+        
             
     
 

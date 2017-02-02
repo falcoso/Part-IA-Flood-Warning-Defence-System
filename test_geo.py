@@ -11,6 +11,7 @@ from floodsystem.stationdata import build_station_list
 from floodsystem.geo import stations_by_distance, haversine, stations_within_radius
 from floodsystem.geo import stations_by_river
 from floodsystem.geo import stations_by_river
+from floodsystem.geo import rivers_by_station_number
 
 #build station list
 stations = build_station_list()
@@ -56,4 +57,12 @@ def test_stations_by_river():
     
     #the second lock on the Cam should be Cambridge
     assert stations_by_river(stations)['River Cam'][1]=='Cambridge'
+    
+def test_rivers_by_station_number():
+    
+    #test the type of the elements of the list
+    assert rivers_by_station_number(stations,4)[1][0]=='River Great Ouse'
+    
+    #test the length of the list when N=9
+    assert len(rivers_by_station_number(stations,9))==11
     
