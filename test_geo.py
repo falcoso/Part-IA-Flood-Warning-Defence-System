@@ -9,6 +9,8 @@ Unit test for the geo module
 import pytest
 from floodsystem.stationdata import build_station_list
 from floodsystem.geo import stations_by_distance, haversine, stations_within_radius
+from floodsystem.geo import stations_by_river
+from floodsystem.geo import stations_by_river
 
 #build station list
 stations = build_station_list()
@@ -41,4 +43,17 @@ def test_stations_within_radius():
     testout2 = stations_within_radius(teststations,testpoint,a[1])
     assert len(testout2) == 2
     assert testout2[0][1] < testout2[1][1]
+    
+def rivers_with_station():
+    
+    #should output 843 entries
+    assert len(stations_by_river(stations)) == 843
+              
+def test_stations_by_river():
+    
+    #the third lock on the Thames should be Benson Lock
+    assert stations_by_river(stations)['Thames'][2]=='Benson Lock'
+    
+    #the second lock on the Cam should be Cambridge
+    assert stations_by_river(stations)['River Cam'][1]=='Cambridge'
     

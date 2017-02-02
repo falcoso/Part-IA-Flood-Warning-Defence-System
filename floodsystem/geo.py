@@ -71,6 +71,45 @@ def stations_within_radius(stations, centre, r):
             within_radius.append(i)
             
     return within_radius
+
+def rivers_with_station(stations):
+    """Inputs - stations:list of stations with data type MonitoringStation
+    
+    Output - returns all stations with a monitoring station"""
+    
+    #creates list
+    list_of_rivers_monitored=[]
+    
+    #iterates through the stations and appends the river that they monitor to the set
+    for station in stations:
+        list_of_rivers_monitored.append((station.river))
+    
+    #turns the list into a set and sorts it alphabetically
+    rivers_monitored=sorted(set(list_of_rivers_monitored))
+    
+    return rivers_monitored
+
+def stations_by_river(stations):
+    
+    """Inputs - stations:list of stations with data type MonitoringStation
+    Output - returns dictionary of all stations that monitor the river"""
+    
+    stations_by_river_dict={}
+    
+    for station in stations:
+        if station.river in stations_by_river_dict.keys():
+            stations_by_river_dict.get(station.river).append(station.name)
+            stations_by_river_dict.get(station.river).sort()
+            
+        else:
+            stations_by_river_dict[station.river]=[station.name]
+            
+    return(stations_by_river_dict)
+            
+    
+
+
+       
     
     
     
