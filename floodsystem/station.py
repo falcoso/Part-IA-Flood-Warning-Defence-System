@@ -35,3 +35,17 @@ class MonitoringStation:
         d += "   river:         {}\n".format(self.river)
         d += "   typical range: {}".format(self.typical_range)
         return d
+    
+    def typical_range_consistent(self):
+        
+        #Returns False if inconsistent
+        if type(self.typical_range)==tuple:
+            if self.typical_range[1]<self.typical_range[0]:
+                return('False')
+            else:
+                return('True')
+        
+        #Returns False if there is no data available
+        else:
+            return('False')
+            
