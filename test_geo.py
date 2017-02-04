@@ -10,7 +10,6 @@ import pytest
 from floodsystem.stationdata import build_station_list
 from floodsystem.geo import stations_by_distance, haversine, stations_within_radius
 from floodsystem.geo import stations_by_river
-from floodsystem.geo import stations_by_river
 from floodsystem.geo import rivers_by_station_number
 from floodsystem.geo import inconsistent_typical_range_stations
 
@@ -68,8 +67,10 @@ def test_rivers_by_station_number():
     assert len(rivers_by_station_number(stations,9))==11
               
 def test_inconsistent_typical_range_stations():
+    
+    inconsistent_list = inconsistent_typical_range_stations(stations)
               
     #ensure that the output of the elements in the list are strings        
-    assert type(inconsistent_typical_range_stations()[0])==str
+    assert type(inconsistent_list[0])==str
                
     

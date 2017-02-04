@@ -11,10 +11,12 @@ def run():
     
     #creates list of stations
     stations=build_station_list()
+    inconsistent_list = sorted(inconsistent_typical_range_stations(stations))
     
-    #sorts and prints the list returned by the function
-    print(sorted(inconsistent_typical_range_stations(stations)))
-    
+    print("\n","Stations with inconsistent level data:")    
+    #prints the list returned by the function
+    for i in inconsistent_list:
+        print(i)  
 
 
 if __name__ == "__main__":

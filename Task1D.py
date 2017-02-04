@@ -18,15 +18,31 @@ def run():
     rivers_monitored=rivers_with_station(stations)
     
     #prints the first 10 entries in the set
-    print(rivers_monitored[0:10])
+    print("\n","First 10 stations with Monitoring Stations:")
+    for i in range(10):
+        print(rivers_monitored[i])
     
     #generates dictionary
     stations_by_river_dict=stations_by_river(stations)
     
     #prints dictionary entries for 3 rivers
-    print("\n",stations_by_river_dict['River Aire'])
-    print("\n",stations_by_river_dict['River Cam'])
-    print("\n",stations_by_river_dict['Thames'])
+    print("\n","Stations on the River Aire:")
+    riveraire = stations_by_river_dict['River Aire']
+    for i in riveraire:
+        print(i)
+        
+    print("\n","Stations on the River Cam:")
+    rivercam = stations_by_river_dict['River Cam']
+    for i in rivercam:
+        print(i)
+        
+    print("\n","Stations on the Thames:")
+    thames = stations_by_river_dict['Thames']
+    for i in thames:
+        print(i)
+    #print("\n",stations_by_river_dict['River Aire'])
+    #print("\n",stations_by_river_dict['River Cam'])
+    #print("\n",stations_by_river_dict['Thames'])
     
     
     
