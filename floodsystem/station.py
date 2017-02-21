@@ -48,4 +48,14 @@ class MonitoringStation:
         #Returns False if there is no data available
         else:
             return('False')
+    
+    def relative_water_level(self):
+        if self.typical_range_consistent()!='False' and type(self.latest_level)==float:
             
+            fraction=(self.latest_level-self.typical_range[0])/(self.typical_range[1]-self.typical_range[0])
+            return(fraction)
+            
+        else:
+            return(None)
+
+        

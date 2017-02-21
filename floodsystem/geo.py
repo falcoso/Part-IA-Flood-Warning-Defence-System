@@ -140,6 +140,9 @@ def rivers_by_station_number(stations, N):
 
 def inconsistent_typical_range_stations(stations):
     
+    """Input - list of stations.
+    Output - a list of the stations with inconsistent typical range data"""
+    
     #creates empty list
     inconsistent_list=[]
     
