@@ -17,3 +17,19 @@ def stations_level_over_threshold(stations, tol):
     stations_over_threshold=sorted(stations_over_threshold,key=lambda x:x[1],reverse=True)
     
     return(stations_over_threshold)
+
+def stations_highest_rel_level(stations, N):
+    """Input - station list and number of stations to return
+    Output - a list of the N stations most at risk with their relative levels"""
+    
+    stations_and_levels=[]
+
+    
+    for station in stations:
+        if type(station.relative_water_level())==float:
+            stations_and_levels.append((station.name,station.relative_water_level()))
+    stations_and_levels=sorted(stations_and_levels,key=lambda x:x[1],reverse=True)
+    
+    return(stations_and_levels[0:N])
+    
+    
