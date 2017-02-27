@@ -10,6 +10,7 @@ from floodsystem.flood import stations_highest_rel_level
 from floodsystem.plot import plot_water_levels
 from floodsystem.datafetcher import fetch_measure_levels
 from datetime import datetime, timedelta
+import matplotlib.pyplot as plt
 
 def run():
     # Build list of stations
@@ -22,6 +23,7 @@ def run():
     highest_levels=stations_highest_rel_level(stations, 5)
     stations_to_plot = []
 
+    #retrieve the rest of station data for the high
     for j in highest_levels:
         for i in stations:
             if j[0] == i.name:
@@ -34,6 +36,7 @@ def run():
         dates, levels = fetch_measure_levels(i.measure_id,
                                              dt=timedelta(days=dt))
         plot_water_levels(i.name,dates,levels)
+        plt.show()
     
 if __name__ == "__main__":
     print("*** Task 2E: CUED Part IA Flood Warning System ***")
