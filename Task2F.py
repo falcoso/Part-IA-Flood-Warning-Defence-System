@@ -28,7 +28,7 @@ def run():
             if j[0] == i.name:
                 stations_to_plot.append(i) 
     
-    dt = 10    
+    dt = 2    
     #plot data for each station
     for i in stations_to_plot:
         #fetch data for each station

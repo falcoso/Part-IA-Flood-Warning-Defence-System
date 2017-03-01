@@ -10,8 +10,8 @@ import matplotlib.pyplot as plt
 from floodsystem.analysis import polyfit
 
 def plot_water_levels(station, dates, levels):
-    "Inputs: station name, dates of data recording and the river levels at that point."
-    "Outputs: Plot of the water levels against time"
+    """Inputs: station name, dates of data recording and the river levels at that point."
+    Outputs: Plot of the water levels against time"""
     
     plt.plot(dates, levels, label = "original data")
     
@@ -26,6 +26,8 @@ def plot_water_levels(station, dates, levels):
     return
 
 def plot_water_levels_with_fit(station, dates, levels, p):
+    """Inputs: station as MonitoringStation class, dates of data recording and the river levels at that point, and the degree of polynomial to be plotted.
+    Outputs: Plot of fitted polynomial, original data, and typical ranges"""
     try:
        #fetch data for each station
        poly, d0 = polyfit(dates, levels, 10)

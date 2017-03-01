@@ -6,12 +6,11 @@ Created on Mon Feb 27 13:38:21 2017
 """
 
 import numpy as np
-import matplotlib.pyplot as plt
 import matplotlib
 
 def polyfit(dates, levels, p):
-    "Inputs: List of dates and the corresponding water levels, and the degree of polynomial p"
-    "Output: Plot of fit polynomial and original data"
+    """Inputs: List of dates and the corresponding water levels, and the degree of polynomial p
+    Output: Plot of fit polynomial and original data"""
     
     x= matplotlib.dates.date2num(dates)
     
