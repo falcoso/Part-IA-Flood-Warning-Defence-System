@@ -41,6 +41,7 @@ def run():
     ratings  = ['severe','high','moderate','low']
 
     for i in stations_to_check:
+        #reset score to determin rating
         category = 0
         
         #if there is no value for relative water level, we need to check the rest of the data anyway so set it to greater than 1
@@ -56,16 +57,19 @@ def run():
         times, levels = fetch_measure_levels(i.measure_id, dt=timedelta(days=dt))
         x= dates.date2num(times)
             
-        #create polyfit for stations
+        #create polyfit for stations, if there is no data available in this period it cannot be done.
         if len(times) != 0:
             poly, d0 = polyfit(times,levels, polydegree)
             trend = poly.deriv()
-        
+            
+            #gradient of the polyfit being positive shows a general worsening of the situation
             if trend(x[0]-d0) > 0:
                 category =+ 1
                 
+        #add the station's town to the appropriate rating list
         rating_store[category].append(i.town)
         
+    #print each rating list
     for i in range(len(ratings)):
         print("\n", "The following Towns have a {} warning:".format(ratings[i]))
         for j in rating_store[len(ratings)-i -1]:
