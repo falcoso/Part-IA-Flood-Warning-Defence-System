@@ -32,33 +32,37 @@ def run():
             if j[0] == i.name:
                 stations_to_plot.append(i) 
     
-    dt = 5    
+    dt = 2    
     #plot data for each station
     for i in stations_to_plot:
         
-        #fetch data for each station
-        dates, levels = fetch_measure_levels(i.measure_id,
+        try:
+            #fetch data for each station
+            dates, levels = fetch_measure_levels(i.measure_id,
                                              dt=timedelta(days=dt))
-        poly, d0 = polyfit(dates, levels, 4)
-        x= matplotlib.dates.date2num(dates)
+            poly, d0 = polyfit(dates, levels, 10)
+            x= matplotlib.dates.date2num(dates)
         
-        #plot polynomial
-        plt.plot(dates, poly(x - d0), label = "poly fit")
+            #plot polynomial
+            plt.plot(dates, poly(x - d0), label = "poly fit")
         
-        #plot original data 
-        plot_water_levels(i.name,dates,levels)
+            #plot original data 
+            plot_water_levels(i.name,dates,levels)
         
-        #plot low and high levels
-        high_low_ranges = i.typical_range
-        low = [high_low_ranges[0]]*len(dates)
-        high= [high_low_ranges[1]]*len(dates)
-        plt.plot(dates, low, label = "low level")
-        plt.plot(dates, high, label = "high level")
-        plt.legend(loc='upper left')
+            #plot low and high levels
+            high_low_ranges = i.typical_range
+            low = [high_low_ranges[0]]*len(dates)
+            high= [high_low_ranges[1]]*len(dates)
+            plt.plot(dates, low, label = "low level")
+            plt.plot(dates, high, label = "high level")
+            plt.legend(loc='upper left')
         
-        #plt.legend("Bestfit", "Original data", "low level", "high level")
-        plt.show()
-    
+            #plt.legend("Bestfit", "Original data", "low level", "high level")
+            plt.show()
+        
+        except:
+            print("{} does not have full data available to plot for the given period".format(i.name))
+            
 if __name__ == "__main__":
     print("*** Task 2E: CUED Part IA Flood Warning System ***")
 
