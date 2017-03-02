@@ -52,7 +52,7 @@ def run():
             
         #check to see if level is above average
         if rel_level > 1:
-            category =+ 2
+            category = category + 2
         #fetch data for each station
         times, levels = fetch_measure_levels(i.measure_id, dt=timedelta(days=dt))
         x= dates.date2num(times)
@@ -64,7 +64,7 @@ def run():
             
             #gradient of the polyfit being positive shows a general worsening of the situation
             if trend(x[0]-d0) > 0:
-                category =+ 1
+                category = category + 1
                 
         #add the station's town to the appropriate rating list
         rating_store[category].append(i.town)
